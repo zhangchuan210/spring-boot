@@ -22,6 +22,7 @@ public class MybatisController {
     public String testRedis() {
 
         List<MenuAction> list = menuActionMapper.getAllMenuAction();
+        logger.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         System.out.println("测试");
         return "Hello World";
     }
