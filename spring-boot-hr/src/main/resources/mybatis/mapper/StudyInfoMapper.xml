@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cd.hr.mapper.StudyInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.cd.hr.entity.StudyInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ID_CARD_NO" jdbcType="VARCHAR" property="idCardNo" />
+    <result column="STUDY_FROM" jdbcType="DATE" property="studyFrom" />
+    <result column="STUDY_TO" jdbcType="DATE" property="studyTo" />
+    <result column="SCHOOL" jdbcType="VARCHAR" property="school" />
+    <result column="ACADEMIC_DEGREE" jdbcType="VARCHAR" property="academicDegree" />
+    <result column="MAJOR" jdbcType="VARCHAR" property="major" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ID_CARD_NO, STUDY_FROM, STUDY_TO, SCHOOL, ACADEMIC_DEGREE, MAJOR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from study_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from study_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.cd.hr.entity.StudyInfo">
+    insert into study_info (ID, ID_CARD_NO, STUDY_FROM, 
+      STUDY_TO, SCHOOL, ACADEMIC_DEGREE, 
+      MAJOR)
+    values (#{id,jdbcType=INTEGER}, #{idCardNo,jdbcType=VARCHAR}, #{studyFrom,jdbcType=DATE}, 
+      #{studyTo,jdbcType=DATE}, #{school,jdbcType=VARCHAR}, #{academicDegree,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.cd.hr.entity.StudyInfo">
+    insert into study_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="idCardNo != null">
+        ID_CARD_NO,
+      </if>
+      <if test="studyFrom != null">
+        STUDY_FROM,
+      </if>
+      <if test="studyTo != null">
+        STUDY_TO,
+      </if>
+      <if test="school != null">
+        SCHOOL,
+      </if>
+      <if test="academicDegree != null">
+        ACADEMIC_DEGREE,
+      </if>
+      <if test="major != null">
+        MAJOR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idCardNo != null">
+        #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="studyFrom != null">
+        #{studyFrom,jdbcType=DATE},
+      </if>
+      <if test="studyTo != null">
+        #{studyTo,jdbcType=DATE},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="academicDegree != null">
+        #{academicDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into study_info (ID, ID_CARD_NO, STUDY_FROM, 
+      STUDY_TO, SCHOOL, ACADEMIC_DEGREE, 
+      MAJOR)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.idCardNo,jdbcType=VARCHAR}, #{item.studyFrom,jdbcType=DATE}, 
+        #{item.studyTo,jdbcType=DATE}, #{item.school,jdbcType=VARCHAR}, #{item.academicDegree,jdbcType=VARCHAR}, 
+        #{item.major,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertBatchSelective" parameterType="java.util.List">
+    insert into study_info
+    (ID, ID_CARD_NO, STUDY_FROM, STUDY_TO, SCHOOL, ACADEMIC_DEGREE, MAJOR)
+    values 
+    <foreach collection="list" index="index" item="item" separator=",">
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+        <if test="item.id != null">
+          #{item.id,jdbcType=INTEGER},
+        </if>
+        <if test="item.id == null">
+          NULL,
+        </if>
+        <if test="item.idCardNo != null">
+          #{item.idCardNo,jdbcType=VARCHAR},
+        </if>
+        <if test="item.idCardNo == null">
+          NULL,
+        </if>
+        <if test="item.studyFrom != null">
+          #{item.studyFrom,jdbcType=DATE},
+        </if>
+        <if test="item.studyFrom == null">
+          NULL,
+        </if>
+        <if test="item.studyTo != null">
+          #{item.studyTo,jdbcType=DATE},
+        </if>
+        <if test="item.studyTo == null">
+          NULL,
+        </if>
+        <if test="item.school != null">
+          #{item.school,jdbcType=VARCHAR},
+        </if>
+        <if test="item.school == null">
+          NULL,
+        </if>
+        <if test="item.academicDegree != null">
+          #{item.academicDegree,jdbcType=VARCHAR},
+        </if>
+        <if test="item.academicDegree == null">
+          NULL,
+        </if>
+        <if test="item.major != null">
+          #{item.major,jdbcType=VARCHAR},
+        </if>
+        <if test="item.major == null">
+          NULL,
+        </if>
+      </trim>
+    </foreach>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cd.hr.entity.StudyInfo">
+    update study_info
+    <set>
+      <if test="idCardNo != null">
+        ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="studyFrom != null">
+        STUDY_FROM = #{studyFrom,jdbcType=DATE},
+      </if>
+      <if test="studyTo != null">
+        STUDY_TO = #{studyTo,jdbcType=DATE},
+      </if>
+      <if test="school != null">
+        SCHOOL = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="academicDegree != null">
+        ACADEMIC_DEGREE = #{academicDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.cd.hr.entity.StudyInfo">
+    update study_info
+    set ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR},
+      STUDY_FROM = #{studyFrom,jdbcType=DATE},
+      STUDY_TO = #{studyTo,jdbcType=DATE},
+      SCHOOL = #{school,jdbcType=VARCHAR},
+      ACADEMIC_DEGREE = #{academicDegree,jdbcType=VARCHAR},
+      MAJOR = #{major,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

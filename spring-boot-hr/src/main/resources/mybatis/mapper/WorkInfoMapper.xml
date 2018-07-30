@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cd.hr.mapper.WorkInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.cd.hr.entity.WorkInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ID_CARD_NO" jdbcType="VARCHAR" property="idCardNo" />
+    <result column="WORK_FROM" jdbcType="DATE" property="workFrom" />
+    <result column="WORK_TO" jdbcType="DATE" property="workTo" />
+    <result column="COMPANY" jdbcType="VARCHAR" property="company" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ID_CARD_NO, WORK_FROM, WORK_TO, COMPANY, TITLE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from work_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from work_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.cd.hr.entity.WorkInfo">
+    insert into work_info (ID, ID_CARD_NO, WORK_FROM, 
+      WORK_TO, COMPANY, TITLE
+      )
+    values (#{id,jdbcType=INTEGER}, #{idCardNo,jdbcType=VARCHAR}, #{workFrom,jdbcType=DATE}, 
+      #{workTo,jdbcType=DATE}, #{company,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.cd.hr.entity.WorkInfo">
+    insert into work_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="idCardNo != null">
+        ID_CARD_NO,
+      </if>
+      <if test="workFrom != null">
+        WORK_FROM,
+      </if>
+      <if test="workTo != null">
+        WORK_TO,
+      </if>
+      <if test="company != null">
+        COMPANY,
+      </if>
+      <if test="title != null">
+        TITLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="idCardNo != null">
+        #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workFrom != null">
+        #{workFrom,jdbcType=DATE},
+      </if>
+      <if test="workTo != null">
+        #{workTo,jdbcType=DATE},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cd.hr.entity.WorkInfo">
+    update work_info
+    <set>
+      <if test="idCardNo != null">
+        ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="workFrom != null">
+        WORK_FROM = #{workFrom,jdbcType=DATE},
+      </if>
+      <if test="workTo != null">
+        WORK_TO = #{workTo,jdbcType=DATE},
+      </if>
+      <if test="company != null">
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

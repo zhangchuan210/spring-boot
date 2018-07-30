@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cd.hr.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.cd.hr.entity.User">
+    <result column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="AGE" jdbcType="INTEGER" property="age" />
+    <result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
+    <result column="HOME_ADDRESS" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="REGISTERED_ADDRESS" jdbcType="VARCHAR" property="registeredAddress" />
+    <result column="NATIVE_PLACE" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="ID_CARD_NO" jdbcType="VARCHAR" property="idCardNo" />
+    <result column="DEPARTMENT" jdbcType="VARCHAR" property="department" />
+    <result column="WORK_TIME" jdbcType="DATE" property="workTime" />
+    <result column="TIME_OF_ENTRY" jdbcType="DATE" property="timeOfEntry" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="COMPUTER_LEVEL" jdbcType="VARCHAR" property="computerLevel" />
+    <result column="FOREIGN_LANGUAGE_LEVEL" jdbcType="VARCHAR" property="foreignLanguageLevel" />
+    <result column="GRADUATE_SCHOOL" jdbcType="VARCHAR" property="graduateSchool" />
+    <result column="ACADEMIC_DEGREE" jdbcType="VARCHAR" property="academicDegree" />
+    <result column="MAJOR" jdbcType="VARCHAR" property="major" />
+    <result column="LABOR_CONTRACT_NO" jdbcType="VARCHAR" property="laborContractNo" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.cd.hr.entity.User">
+    insert into user (USER_NAME, SEX,
+      TEL, AGE, BIRTHDAY, HOME_ADDRESS, 
+      REGISTERED_ADDRESS, NATIVE_PLACE, ID_CARD_NO, 
+      DEPARTMENT, WORK_TIME, TIME_OF_ENTRY, 
+      TITLE, COMPUTER_LEVEL, FOREIGN_LANGUAGE_LEVEL, 
+      GRADUATE_SCHOOL, ACADEMIC_DEGREE, MAJOR, 
+      LABOR_CONTRACT_NO)
+    values ( #{userName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+      #{tel,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{homeAddress,jdbcType=VARCHAR}, 
+      #{registeredAddress,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR}, #{idCardNo,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{workTime,jdbcType=DATE}, #{timeOfEntry,jdbcType=DATE}, 
+      #{title,jdbcType=VARCHAR}, #{computerLevel,jdbcType=VARCHAR}, #{foreignLanguageLevel,jdbcType=VARCHAR}, 
+      #{graduateSchool,jdbcType=VARCHAR}, #{academicDegree,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
+      #{laborContractNo,jdbcType=VARCHAR})
+  </insert>
+
+
+  <select id="getByIdCardNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select *
+    from user
+    where ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR}
+  </select>
+</mapper>
