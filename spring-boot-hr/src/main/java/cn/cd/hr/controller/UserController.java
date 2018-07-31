@@ -22,10 +22,10 @@ public class UserController {
         User user = new User();
         user.setIdCardNo("123");
         user.setUserName("aaa");
+        user.setTel("123");
         userMapper.insert(user);
 
         User user1 = userMapper.getByIdCardNo("123");
-        System.out.println("测试");
         return "Hello World";
     }
 
