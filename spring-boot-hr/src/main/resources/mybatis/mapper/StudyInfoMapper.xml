@@ -31,117 +31,7 @@
       #{studyTo,jdbcType=DATE}, #{school,jdbcType=VARCHAR}, #{academicDegree,jdbcType=VARCHAR}, 
       #{major,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.cd.hr.entity.StudyInfo">
-    insert into study_info
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="idCardNo != null">
-        ID_CARD_NO,
-      </if>
-      <if test="studyFrom != null">
-        STUDY_FROM,
-      </if>
-      <if test="studyTo != null">
-        STUDY_TO,
-      </if>
-      <if test="school != null">
-        SCHOOL,
-      </if>
-      <if test="academicDegree != null">
-        ACADEMIC_DEGREE,
-      </if>
-      <if test="major != null">
-        MAJOR,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="idCardNo != null">
-        #{idCardNo,jdbcType=VARCHAR},
-      </if>
-      <if test="studyFrom != null">
-        #{studyFrom,jdbcType=DATE},
-      </if>
-      <if test="studyTo != null">
-        #{studyTo,jdbcType=DATE},
-      </if>
-      <if test="school != null">
-        #{school,jdbcType=VARCHAR},
-      </if>
-      <if test="academicDegree != null">
-        #{academicDegree,jdbcType=VARCHAR},
-      </if>
-      <if test="major != null">
-        #{major,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <insert id="insertBatch" parameterType="java.util.List">
-    insert into study_info (ID, ID_CARD_NO, STUDY_FROM, 
-      STUDY_TO, SCHOOL, ACADEMIC_DEGREE, 
-      MAJOR)
-    values 
-    <foreach collection="list" index="index" item="item" separator=",">
-      (#{item.id,jdbcType=INTEGER}, #{item.idCardNo,jdbcType=VARCHAR}, #{item.studyFrom,jdbcType=DATE}, 
-        #{item.studyTo,jdbcType=DATE}, #{item.school,jdbcType=VARCHAR}, #{item.academicDegree,jdbcType=VARCHAR}, 
-        #{item.major,jdbcType=VARCHAR})
-    </foreach>
-  </insert>
-  <insert id="insertBatchSelective" parameterType="java.util.List">
-    insert into study_info
-    (ID, ID_CARD_NO, STUDY_FROM, STUDY_TO, SCHOOL, ACADEMIC_DEGREE, MAJOR)
-    values 
-    <foreach collection="list" index="index" item="item" separator=",">
-      <trim prefix="(" suffix=")" suffixOverrides=",">
-        <if test="item.id != null">
-          #{item.id,jdbcType=INTEGER},
-        </if>
-        <if test="item.id == null">
-          NULL,
-        </if>
-        <if test="item.idCardNo != null">
-          #{item.idCardNo,jdbcType=VARCHAR},
-        </if>
-        <if test="item.idCardNo == null">
-          NULL,
-        </if>
-        <if test="item.studyFrom != null">
-          #{item.studyFrom,jdbcType=DATE},
-        </if>
-        <if test="item.studyFrom == null">
-          NULL,
-        </if>
-        <if test="item.studyTo != null">
-          #{item.studyTo,jdbcType=DATE},
-        </if>
-        <if test="item.studyTo == null">
-          NULL,
-        </if>
-        <if test="item.school != null">
-          #{item.school,jdbcType=VARCHAR},
-        </if>
-        <if test="item.school == null">
-          NULL,
-        </if>
-        <if test="item.academicDegree != null">
-          #{item.academicDegree,jdbcType=VARCHAR},
-        </if>
-        <if test="item.academicDegree == null">
-          NULL,
-        </if>
-        <if test="item.major != null">
-          #{item.major,jdbcType=VARCHAR},
-        </if>
-        <if test="item.major == null">
-          NULL,
-        </if>
-      </trim>
-    </foreach>
-  </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="cn.cd.hr.entity.StudyInfo">
     update study_info
     <set>
@@ -166,14 +56,5 @@
     </set>
     where ID = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.cd.hr.entity.StudyInfo">
-    update study_info
-    set ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR},
-      STUDY_FROM = #{studyFrom,jdbcType=DATE},
-      STUDY_TO = #{studyTo,jdbcType=DATE},
-      SCHOOL = #{school,jdbcType=VARCHAR},
-      ACADEMIC_DEGREE = #{academicDegree,jdbcType=VARCHAR},
-      MAJOR = #{major,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
+
 </mapper>
