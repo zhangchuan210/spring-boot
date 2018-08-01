@@ -40,10 +40,26 @@
       #{laborContractNo,jdbcType=VARCHAR})
   </insert>
 
-
   <select id="getByIdCardNo" parameterType="java.lang.String" resultMap="BaseResultMap">
     select *
     from user
     where ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR}
   </select>
+
+  <select id="queryUsers" parameterType="cn.cd.hr.entity.User" resultMap="BaseResultMap">
+    select *
+    from user
+    where 1 = 1
+    <if test="userName != null">
+      AND USER_NAME = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="tel != null">
+      AND TEL = #{tel,jdbcType=VARCHAR}
+    </if>
+    <if test="idCardNo != null">
+      AND ID_CARD_NO = #{idCardNo,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
 </mapper>
