@@ -3,6 +3,8 @@ package cn.cd.hr.mapper;
 import cn.cd.hr.entity.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserMapper {
     /** 
@@ -12,5 +14,7 @@ public interface UserMapper {
     int insert(User record);
 
     User getByIdCardNo(String idCardNo);
+
+    List<User> queryUsers(User user);
 
 }
