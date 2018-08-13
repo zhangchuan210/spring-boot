@@ -10,10 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -49,14 +52,16 @@ public class UserController {
 
         userMapper.insert(user);
 
-        return "SUCCESS";
+        return "success";
     }
 
-    @RequestMapping("/queryUser")
-    public Model queryUser(@Valid User user, BindingResult result, Model model) {
-
+    @RequestMapping("/queryUsers")
+    @ResponseBody
+    public List<User> queryUsers(@Valid User user, BindingResult result, Model model) {
+        Map<String, Object> map = new HashMap<>();
         List<User> list = userMapper.queryUsers(user);
         model.addAttribute("users", list);
-        return model;
+
+        return list;
     }
 }
