@@ -64,6 +64,9 @@
                     <td colspan="6" align="right">
                         <input type="button" id="queryUsers" name="queryUsers" onclick="queryUsers()" value="查询" />
                     </td>
+                    <td colspan="6" align="right">
+                        <input type="button" id="outPut" name="outPut" onclick="outPut()" value="导出" />
+                    </td>
                 </tr>
             </table>
         <table id="dg" title="员工列表" class="easyui-datagrid" fitColumns="true" pagination="true" rownumbers="true"
@@ -98,6 +101,11 @@
             "idCardNo": $("#tidCardNoel").val(),
             "department": $("#department").val(),
         });
+    }
+
+    //保存
+    function outPut() {
+        window.location.href="/outPut";
     }
 
 </script>
